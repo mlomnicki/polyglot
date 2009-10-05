@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+LIBDIR = File.join( File.dirname( __FILE__ ), '..', 'lib' )
+require File.join( LIBDIR, 'docent' )
+
+PROG_PATH = File.join( LIBDIR, 'docent', 'docent.glade' )
+PROG_NAME = "Docent"
+gui = Docent::DocentGlade.new(PROG_PATH, nil, PROG_NAME)
+gui.show
+Gtk.main

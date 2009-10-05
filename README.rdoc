@@ -1,7 +1,7 @@
-= docent
+= Docent
 
-Description goes here.
+    Easy word learning
 
 == Copyright
 
-Copyright (c) 2009 mlomnicki. See LICENSE for details.
+Copyright (c) 2009 Michał Łomnicki. See MIT-LICENSE for details.
