@@ -2,9 +2,9 @@
 
 require 'libglade2'
 
-module Docent
+module Polyglot
 
-  class DocentGlade
+  class PolyglotGlade
     include GetText
 
     attr :glade

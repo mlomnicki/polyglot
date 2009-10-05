@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+LIBDIR = File.join( File.dirname( __FILE__ ), '..', 'lib' )
+require File.join( LIBDIR, 'polyglot' )
+
+PROG_PATH = File.join( LIBDIR, 'polyglot', 'polyglot.glade' )
+PROG_NAME = "Polyglot"
+gui = Polyglot::PolyglotGlade.new(PROG_PATH, nil, PROG_NAME)
+gui.show
+Gtk.main
