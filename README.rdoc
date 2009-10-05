@@ -1,0 +1,7 @@
+= docent
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 mlomnicki. See LICENSE for details.
