@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'libglade2'
+require 'yaml'
 
 module Polyglot
 
@@ -9,13 +10,16 @@ module Polyglot
 
     attr :glade
 
-    attr_accessor :current_word
+    attr_accessor :current_word, :current_key
 
     def initialize(path_or_data, root = nil, domain = nil, localedir = nil, flag = GladeXML::FILE)
       bindtextdomain(domain, localedir, nil, "UTF-8")
       @glade = GladeXML.new(path_or_data, root, domain, localedir, flag) {|handler| method(handler)}
       @show_next = false
-      @questions = CyclicHash.new( { :word => 'słowo', :letter => 'litera', :old => 'stary', :young => 'młody', :stinky => 'śmierdzący', 'to insist' => 'nalegać' } )
+      #@questions = CyclicHash.new( { :word => 'słowo', :letter => 'litera', :old => 'stary', :young => 'młody', :stinky => 'śmierdzący', 'to insist' => 'nalegać' } )
+      dict = YAML.load_file( File.join( File.dirname( __FILE__ ), 'dict.yml' ) )
+      @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v); hsh }
+      @current_key = @questions.keys.first
     end
 
     def show
@@ -30,23 +34,25 @@ module Polyglot
     end
 
     def on_txt_answer_enter_notify_event
-      if current_answer == @questions[current_word]
+      if current_answer == @questions[current_key][current_word]
         show_status( "#{current_answer} - good answer!" )
         set_next_word
       else
         show_status( "#{current_answer} - bad answer. Try again." )
+        clear_answer
       end
     end
 
     def on_btn_help_clicked( widget )
       dialog = Gtk::MessageDialog.new(@window, Gtk::Dialog::DESTROY_WITH_PARENT, Gtk::MessageDialog::INFO, Gtk::MessageDialog::BUTTONS_OK,
-        "#{current_word} - #{@questions[current_word]}" )
+        "#{current_word} - #{@questions[current_key]}" )
       dialog.run
       dialog.destroy
+      set_next_word
     end
 
     def current_word=( value )
-      glade['lbl_word'].text = value.to_s
+      glade['lbl_word'].text = "#{value} (#{current_key})"
       @current_word = value
     end
 
@@ -56,7 +62,8 @@ module Polyglot
 
     def set_next_word
       clear_answer
-      self.current_word = @questions.next!.key
+      @current_key = @questions.keys[rand(@questions.size)]
+      self.current_word = @questions[@current_key].next!.key
     end
 
     def clear_answer
