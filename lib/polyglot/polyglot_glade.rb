@@ -3,6 +3,8 @@
 require 'libglade2'
 require 'yaml'
 
+DICT = ENV['DICT'] || 'en'
+
 module Polyglot
 
   class PolyglotGlade
@@ -18,7 +20,7 @@ module Polyglot
       @show_next = false
       #@questions = CyclicHash.new( { :word => 'słowo', :letter => 'litera', :old => 'stary', :young => 'młody', :stinky => 'śmierdzący', 'to insist' => 'nalegać' } )
       dict = YAML.load_file( File.join( File.dirname( __FILE__ ), 'dict.yml' ) )
-      @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v); hsh }
+      @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v, DICT == 'pl'); hsh }
       @current_key = @questions.keys.first
     end
 

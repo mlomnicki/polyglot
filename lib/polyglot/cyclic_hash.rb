@@ -1,10 +1,14 @@
 class CyclicHash < Hash
   KeyValue = Struct.new( :key, :value )
 
-  def initialize( hash )
+  def initialize( hash, invert = false )
     raise ArgumentError.new( "CyclicHash must be initialized with a hash" ) unless hash.is_a?( Hash )
     raise ArgumentError.new( "CyclicHash cannot be empty" ) if hash.empty?
-    self.replace( hash )
+    if invert
+      self.replace( hash.inject({}) { |hsh, (k,v)| hsh[v] = k; hsh } )
+    else
+      self.replace( hash )
+    end
     @current_key_idx = -1
   end
 
