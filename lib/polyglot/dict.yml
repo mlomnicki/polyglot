@@ -9,6 +9,7 @@ verb:
   lack: brakować
   admire: podziwiać
   'think over': przemyśleć
+  refuse: odmawiać
 
 noun:
   purse: porfel
@@ -28,6 +29,9 @@ noun:
   effort: wysiłek
   greed: chciwość
   journey: wycieczka
+  joy: radość
+  fever: gorączka
+  flu: grypa
 
 adj:
   casual: swobodny
@@ -42,6 +46,24 @@ adj:
   sincere: szczery
   particular: poszczególny
   awesome: niesamowity
+  uneasy: niespokojny
+  filthy: obrzydliwy
+  generous: chojny
+  apodyktyczny: bossy
+  decisive: stanowczy
+  confident: pewny
+  cooperative: uczynny
+  'self-centered': egocentryczny 
+  'self-confident': pewny siebie
+  reserved: zdystansowany
+  careful: ostrożny
+  caring: opiekuńczy
+  responsible: odpowiedzialny
+  stubborn: uparty
+  selfish: egoistyczny
+  mean: skąpy
+  cheerful: pogodny
+  talkative: rozmowny
 
 adverb:
   'in addition': dodatkowo
