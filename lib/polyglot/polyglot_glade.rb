@@ -22,6 +22,8 @@ module Polyglot
       dict = YAML.load_file( File.join( File.dirname( __FILE__ ), 'dict.yml' ) )
       @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v, DICT == 'pl'); hsh }
       @current_key = @questions.keys.first
+      @good_answers = 0
+      @all_answers = 0
     end
 
     def show
@@ -36,20 +38,23 @@ module Polyglot
     end
 
     def on_txt_answer_enter_notify_event
+      @all_answers += 1
       if current_answer == @questions[current_key][current_word]
-        show_status( "#{current_answer} - good answer!" )
+        @good_answers += 1
+        show_status( "#{current_answer} - good answer! (#{@good_answers} / #{@all_answers})" )
         set_next_word
       else
-        show_status( "#{current_answer} - bad answer. Try again." )
+        show_status( "#{current_answer} - bad answer. Try again. (#{@good_answers} / #{@all_answers})" )
         clear_answer
       end
     end
 
     def on_btn_help_clicked( widget )
-      dialog = Gtk::MessageDialog.new(@window, Gtk::Dialog::DESTROY_WITH_PARENT, Gtk::MessageDialog::INFO, Gtk::MessageDialog::BUTTONS_OK,
-        "#{current_word} - #{@questions[current_key]}" )
+      dialog = Gtk::MessageDialog.new(@window, Gtk::Dialog::DESTROY_WITH_PARENT, Gtk::MessageDialog::INFO, Gtk::MessageDialog::BUTTONS_OK, "#{current_word} - #{@questions[current_key][current_word]}" )
       dialog.run
       dialog.destroy
+      @all_answers += 1
+      show_status( "Bad answer. (#{@good_answers} / #{@all_answers})" )
       set_next_word
     end
 
