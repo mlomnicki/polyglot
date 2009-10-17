@@ -1,7 +1,7 @@
 verb:
-  mend: poprawić się
+  mend: poprawiać się
   invent: wynaleźć
-  guide: prowadzić
+  guide: oprowadzać
   achieve: osiągać
   gain: zyskiwać
   lead: prowadzić
@@ -10,9 +10,11 @@ verb:
   admire: podziwiać
   'think over': przemyśleć
   refuse: odmawiać
-
+  'hit the deck': upaść na ziemię
+  fall: upaść
+  recall: przypominać sobie
 noun:
-  purse: porfel
+  purse: portfel
   'bushy eyebrows': krzaczaste brwi
   coward: tchórz
   guide: przewodnik
@@ -32,7 +34,10 @@ noun:
   joy: radość
   fever: gorączka
   flu: grypa
-
+  stomach: brzuch
+  drawers: majtki
+  generosity: hojność
+  journal: dziennik
 adj:
   casual: swobodny
   plump: utuczony
@@ -41,15 +46,14 @@ adj:
   bold: pogrubiony
   bald: łysy
   remarkable: godny uwagi
-  generosity: hojność
   greedy: chciwy
   sincere: szczery
   particular: poszczególny
   awesome: niesamowity
   uneasy: niespokojny
   filthy: obrzydliwy
-  generous: chojny
-  apodyktyczny: bossy
+  generous: hojny
+  bossy: apodyktyczny
   decisive: stanowczy
   confident: pewny
   cooperative: uczynny
@@ -64,7 +68,8 @@ adj:
   mean: skąpy
   cheerful: pogodny
   talkative: rozmowny
+  deaf: głuchy
 
-adverb:
-  'in addition': dodatkowo
-  'in particular': w szczególności
+#adverb:
+#  'in addition': dodatkowo
+#  'in particular': w szczególności
