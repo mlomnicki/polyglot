@@ -18,7 +18,6 @@ module Polyglot
       bindtextdomain(domain, localedir, nil, "UTF-8")
       @glade = GladeXML.new(path_or_data, root, domain, localedir, flag) {|handler| method(handler)}
       @show_next = false
-      #@questions = CyclicHash.new( { :word => 'słowo', :letter => 'litera', :old => 'stary', :young => 'młody', :stinky => 'śmierdzący', 'to insist' => 'nalegać' } )
       dict = YAML.load_file( File.join( File.dirname( __FILE__ ), 'dict.yml' ) )
       @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v, DICT == 'pl'); hsh }
       @current_key = @questions.keys.first
@@ -56,6 +55,7 @@ module Polyglot
       @all_answers += 1
       show_status( "Bad answer. (#{@good_answers} / #{@all_answers})" )
       set_next_word
+      glade['txt_answer'].grab_focus
     end
 
     def current_word=( value )
