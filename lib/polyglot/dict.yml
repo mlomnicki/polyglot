@@ -13,6 +13,9 @@ verb:
   'hit the deck': upaść na ziemię
   fall: upaść
   recall: przypominać sobie
+  divert: odwracać
+
+
 noun:
   purse: portfel
   'bushy eyebrows': krzaczaste brwi
@@ -38,6 +41,10 @@ noun:
   drawers: majtki
   generosity: hojność
   journal: dziennik
+  hint: podpowiedź
+  funeral: pogrzeb
+  coffin: trumna
+
 adj:
   casual: swobodny
   plump: utuczony
@@ -69,7 +76,10 @@ adj:
   cheerful: pogodny
   talkative: rozmowny
   deaf: głuchy
+  unreliable: niepewny
+  insufficient: niewystarczający
+  sufficient: wystarczający
 
-#adverb:
-#  'in addition': dodatkowo
-#  'in particular': w szczególności
+adverb:
+  'in addition': dodatkowo
+  'in particular': w szczególności
