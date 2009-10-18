@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'libglade2'
-require 'yaml'
 
 DICT = ENV['DICT'] || 'en'
 
@@ -18,9 +17,7 @@ module Polyglot
       bindtextdomain(domain, localedir, nil, "UTF-8")
       @glade = GladeXML.new(path_or_data, root, domain, localedir, flag) {|handler| method(handler)}
       @show_next = false
-      dict = YAML.load_file( File.join( File.dirname( __FILE__ ), 'dict.yml' ) )
-      @questions = dict.inject({}) { |hsh, (k,v)| hsh[k] = CyclicHash.new(v, DICT == 'pl'); hsh }
-      @current_key = @questions.keys.first
+      @dict = Dictionary.new
       @good_answers = 0
       @all_answers = 0
     end
@@ -38,7 +35,7 @@ module Polyglot
 
     def on_txt_answer_enter_notify_event
       @all_answers += 1
-      if current_answer == @questions[current_key][current_word]
+      if current_answer == @dict.current_answer
         @good_answers += 1
         show_status( "#{current_answer} - good answer! (#{@good_answers} / #{@all_answers})" )
         set_next_word
@@ -49,7 +46,7 @@ module Polyglot
     end
 
     def on_btn_help_clicked( widget )
-      dialog = Gtk::MessageDialog.new(@window, Gtk::Dialog::DESTROY_WITH_PARENT, Gtk::MessageDialog::INFO, Gtk::MessageDialog::BUTTONS_OK, "#{current_word} - #{@questions[current_key][current_word]}" )
+      dialog = Gtk::MessageDialog.new(@window, Gtk::Dialog::DESTROY_WITH_PARENT, Gtk::MessageDialog::INFO, Gtk::MessageDialog::BUTTONS_OK, "#{current_word} - #{@dict.current_answer}" )
       dialog.run
       dialog.destroy
       @all_answers += 1
@@ -59,7 +56,7 @@ module Polyglot
     end
 
     def current_word=( value )
-      glade['lbl_word'].text = "#{value} (#{current_key})"
+      glade['lbl_word'].text = "#{value} (#{@dict.current_key})"
       @current_word = value
     end
 
@@ -69,8 +66,7 @@ module Polyglot
 
     def set_next_word
       clear_answer
-      @current_key = @questions.keys[rand(@questions.size)]
-      self.current_word = @questions[@current_key].next!.key
+      self.current_word = @dict.next_question!
     end
 
     def clear_answer
