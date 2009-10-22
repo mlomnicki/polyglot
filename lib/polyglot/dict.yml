@@ -14,6 +14,8 @@ verb:
   fall: upaść
   recall: przypominać sobie
   divert: odwracać
+  'pick on': czepiać się
+  tease: drażnić 
 
 
 noun:
@@ -83,3 +85,6 @@ adj:
 adverb:
   'in addition': dodatkowo
   'in particular': w szczególności
+
+preposition:
+  'in spite of': pomimo

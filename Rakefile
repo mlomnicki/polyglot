@@ -4,10 +4,10 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "docent"
-    gem.summary = %Q{TODO}
+    gem.name = "polyglot"
+    gem.summary = "Easy GTK application which helps you to learn new language by asking you for a word in one language and you must answer in another."
     gem.email = "michal@lomnicki.com.pl"
-    gem.homepage = "http://github.com/mlomnicki/docent"
+    gem.homepage = "http://github.com/mlomnicki/polyglot"
     gem.authors = ["mlomnicki"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -49,7 +49,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "docent #{version}"
+  rdoc.title = "polyglot #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

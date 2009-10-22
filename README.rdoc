@@ -1,6 +1,7 @@
-= Docent
+= Polyglot
 
-    Easy word learning
+    Easy GTK application which helps you to learn new language by asking you for a word in one language and you must answer in another.
+    Currently only English-Polish dictionary is available. But one can easily add other ones.    
 
 == Copyright
 
