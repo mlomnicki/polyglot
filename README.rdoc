@@ -1,9 +1,9 @@
 = Polyglot
 
-    Easy GTK application which helps you to learn new languages by 
-    asking you for a word in one language and you must answer in another.
-    Currently only English-Polish dictionary is available. 
-    But one can easily add other ones.    
+Easy GTK application which helps you to learn new languages by 
+asking you for a word in one language and you must answer in another.
+Currently only English-Polish dictionary is available. 
+But one can easily add other ones.    
 
 == Copyright
 
